@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 
 # Create your views here.
 def signup(request):
@@ -23,7 +24,7 @@ def login(request):
         if form.is_valid():
             # 로그인
             auth_login(request, form.get_user())
-            
+
             return redirect('articles:index')
     else:
         form = CustomAuthenticationForm()
@@ -32,3 +33,7 @@ def login(request):
         'form': form,
     }
     return render(request, 'login.html', context)
+
+def logout(request):
+    auth_logout(request)
+    return redirect('accounts:login')
