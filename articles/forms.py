@@ -1,9 +1,9 @@
 from django import forms
-from .models import Ariticle
+from .models import Article
 
 class ArticleForm(forms.ModelForm):
     class Meta:
-        model = Ariticle
+        model = Article
         # fields = '__all__'
         exclude = ('user', )
         # fields = ('title', 'content', )

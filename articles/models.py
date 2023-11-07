@@ -3,7 +3,7 @@ from accounts.models import User #1
 from django.conf import settings #2
 from django.contrib.auth import get_user_model #3
 
-class Ariticle(models.Model):
+class Article(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
 
