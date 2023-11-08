@@ -6,6 +6,8 @@
     {% for article in articles %}
     <h3>{{ article.title }}</h3>
     <p>{{ article.user }}</p>
+    <a href="{% url 'articles:detail' id=article.id %}">detatil</a>
+    <hr>
     {% endfor %}
     
 {% endblock %}
