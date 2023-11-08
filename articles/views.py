@@ -68,6 +68,27 @@ def delete(request, id):
 
     return redirect('articles:index')
 
+@login_required
+def update(request, id):
+    article = Article.objects.get(id=id)
+
+    if request.user != article.user:
+        return redirect('articles:detail', id=id)
+    
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:detail', id=id)
+    else:
+        form = ArticleForm(instance=article)
+    
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'form.html', context)
+
 
 @login_required
 def comment_delete(request, article_id, id):
