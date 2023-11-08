@@ -25,7 +25,10 @@ def login(request):
             # 로그인
             auth_login(request, form.get_user())
 
-            return redirect('articles:index')
+           
+            # 주소로 create에 들어온 경우
+            next_url = request.GET.get('next')
+            return redirect(next_url or 'articles:index')
     else:
         form = CustomAuthenticationForm()
 
